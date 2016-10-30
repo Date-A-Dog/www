@@ -2,99 +2,84 @@
  * daterprofile.js is a module encapsulating a user profile.
  *
  */
-function DaterProfile(email, fName, lName, phone) {
-  // dater properties
-  var _email  = email; // userId is the user's email
-  var _fName  = fName;
-  var _lName  = lName;
-  var _phone  = phone; 
+var DaterProfile =function(email, fName, lName, phone) {
+  
 
-  var _street;
-  var _city;
-  var _state;
-  var _zipCode;
+  // dater profile properties
+  var profile = {};
+    
+
+  // declare/init dater properties
+  profile._email  = email; // userId is the user's email
+  profile._fName  = fName;
+  profile._lName  = lName;
+  profile._phone  = phone;
+  
  
   // log entry
   console.log("Dater profile created");
 
-  // address
-  var _address = {
-    street:  _street,
-    city:    _city,
-    state:   _state,
-    zipCode: _zipCode
-  } 
 
-  // dater properties
-  var profile = {
-    fName: _fName,
-    lName: _lName,
-    email: _email,
-    phone: _phone,
-    address: _address
-  }
   /*
    * Getter method, returns user's email
    */
   profile.email = function() {
-    return _email;
+    return this._email;
   };
 
   /**
    * Getter method, returns dater's first name
    */
   profile.fName = function() {
-    return _fName;
+    return this._fName;
   };
 
   /**
    * Getter method, returns dater's last name
    */
   profile.lName = function() {
-    return _lName;
+    return this._lName;
   };
 
   /**
    * Getter method, returns dater's phone number
    */
   profile.phone = function() {
-    return _phone;
+    return this._phone;
   };
 
-  /**
-   * Getter method, returns dater's email
-   */
-  profile.email = function() {
-    return _email;
-  };
 
   /**
    * Getter method, return dater's street
    */
-  profile.address.street = function() {
-    return _street;
+  profile.street = function() {
+    verifyProperty(profile, '_address');
+    return this._address._street;
   };
-  
   /**
    * Getter method, returns dater's city
    */
-  profile.address.city = function() {
-    return _city;
+  profile.city = function() {
+    verifyProperty(profile, '_address');
+    return this._address._city;
   };
 
   /**
    * Getter method, returns dater's state
    */
-  profile.address.state = function() {
-    return _state;
+  profile.state = function() {
+    verifyProperty(profile, '_address');
+    return this._address._state;
   };
   
   /**
    * Getter method, returns dater's zipcode
    */
-  profile.address.zipCode = function() {
-    return _zipCode;
+  profile.zipCode = function() {
+    verifyProperty(profile, '_address');
+    return this._address._zipCode;
   };
+
   /**
    * Getter/setter method, initializes || returns
    * an object of type address. 
@@ -108,15 +93,41 @@ function DaterProfile(email, fName, lName, phone) {
   profile.address = function(street, city, state, zipCode) {
     if (!arguments.length) {
       // interpret method as getter
-      return _address;
+      
+      // check if address is initialized
+      verifyProperty(profile, '_address');
+
+      return this._address;
     }
+    profile._address = {};
     // TODO: input validation here
-    _street = street;
-    _city = city;
-    _state = state;
-    _zipCode = zipCode;
+    profile._address._street = street;
+    profile._address._city = city;
+    profile._address._state = state;
+    profile._address._zipCode = zipCode;
 
     return profile;
+  };
+
+  /** 
+  * verifies address property has been defined
+  */
+  var verifyProperty = function(obj, property) {
+
+    try {
+
+        if (!(property in obj)) {
+          throw {
+            error: "Trying to access an undefined property of DaterProfile",
+            message: "\"" + property + "\" is not defined in DaterProfile object" 
+          }
+        }
+
+    }
+    catch (e) {
+      console.log("Error = " + e.error);
+      console.log("Message = " + e.message);          
+    }
   };
 
   return profile;

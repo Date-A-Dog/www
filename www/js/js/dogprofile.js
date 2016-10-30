@@ -5,26 +5,28 @@
  *
  */
 
-function DogProfile(dogId, name, sex, photoURL) {
-  // dog properties 
-  var _id       = dogId;
-  var _name     = name;
-  var _sex      = sex;
-  var _photoURL = photoURL;
-  console.log("new DogProfile created");
-  var profile = {
-    id:       _id,
-    name:     _name,
-    sex:      _sex,
-    photoURL: _photoURL
-  }
+var DogProfile = function(dogId, name, sex, photoURL) {
+  // object profile properties
+  var profile = {};
+
+  // declare/init dog properties 
+  profile._id       = dogId;
+  profile._name     = name;
+  profile._sex      = sex;
+  profile._photoURL = photoURL;
+
+  // log entry
+  console.log("DogProfile created: " + profile);
+  console.log(profile._id + ", " + profile._name + ", " + profile._sex + ", " + profile._photoURL);
+
+
   
   /**
    * Getter method
    * returns dogId
    **/
   profile.id = function() {
-    return _id;
+    return this._id;
   };
   
   /**
@@ -32,7 +34,7 @@ function DogProfile(dogId, name, sex, photoURL) {
    * returns dogName
    **/
   profile.name = function() {
-    return _name;
+    return this._name;
   };
   
   /**
@@ -40,7 +42,7 @@ function DogProfile(dogId, name, sex, photoURL) {
    * returns dogSex
    **/
   profile.sex = function() {
-    return _sex;
+    return this._sex;
   };
 
   /*
@@ -48,10 +50,10 @@ function DogProfile(dogId, name, sex, photoURL) {
    * returns photoURL
    */
   profile.photoURL = function() {
-    return _photoURL;
+    return this._photoURL;
   };
   
   return profile;
-}
+};
 
 module.exports = DogProfile;
