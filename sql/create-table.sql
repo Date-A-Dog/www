@@ -30,6 +30,7 @@ CREATE TABLE Dogs (
   dog_id INT PRIMARY KEY NOT NULL,
   shelter_id VARCHAR(20) NOT NULL REFERENCES Shelters(shelter_id),
   dog_name VARCHAR(50),
+  breeds text[],
   sex VARCHAR(1),
   age VARCHAR(10),
   size VARCHAR(1),
@@ -38,10 +39,10 @@ CREATE TABLE Dogs (
   status VARCHAR(1)
 );
 
-CREATE TABLE DogBreeds (
-  dog_id INT NOT NULL REFERENCES Dogs(dog_id),
-  breed VARCHAR(50)
-);
+--CREATE TABLE DogBreeds (
+--  dog_id INT NOT NULL REFERENCES Dogs(dog_id),
+--  breed VARCHAR(50)
+--);
 
 CREATE TABLE DogImages (
   dog_id INT NOT NULL REFERENCES Dogs(dog_id),
@@ -55,6 +56,7 @@ CREATE TABLE Request(
   dog_id INT NOT NULL REFERENCES Dogs(dog_id),
   shelter_id VARCHAR(20) NOT NULL REFERENCES Shelters(shelter_id),
   user_id INT NOT NULL REFERENCES Users(user_id),
+  requested_date DATE,
   request_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   status VARCHAR(1)
