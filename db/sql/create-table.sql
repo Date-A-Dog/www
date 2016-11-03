@@ -7,12 +7,8 @@ CREATE TABLE Shelters (
   city VARCHAR(60),
   state VARCHAR(2),
   zipcode VARCHAR(10),
-  phone VARCHAR(15),
-  fax VARCHAR(15),
-  website VARCHAR(100) --this seems to be hidden in the fax or phone field, I can do a check
-  --to attempt to retrieve invalid phone numbers with syntax like an http request, then
-  --and input them into this. Maybe a stretch goal, and I could just strip out the non-valid
-  -- phone numbers.
+  phone VARCHAR(50), --no validation here, we'll have to do our own
+  fax VARCHAR(50) --same
 );
 
 CREATE TABLE Users (
@@ -38,11 +34,6 @@ CREATE TABLE Dogs (
   last_updated TIMESTAMP,
   status VARCHAR(1)
 );
-
---CREATE TABLE DogBreeds (
---  dog_id INT NOT NULL REFERENCES Dogs(dog_id),
---  breed VARCHAR(50)
---);
 
 CREATE TABLE DogImages (
   dog_id INT NOT NULL REFERENCES Dogs(dog_id),
