@@ -23,7 +23,7 @@ var Shelter = function(id) {
 
     fetchComplete = false;
     // call async method to load dateRequext data
-    fetchRequests('js/js/dateRequestData.json', function(data){
+    fetchRequests('js/js/mockData/dateRequestData.json', function(data){
         //return data here
         shelter._dateRequests = data;
         fetchComplete = true;
