@@ -4,11 +4,8 @@
  * and methods to query and update server data.
  *
  */
-var Shelter = function(_id) {
-
- 
+var Shelter = function(_id) { 
   var fetchComplete; // avoid calling methods
-
   
   var shelter = {
     id: _id,
@@ -17,28 +14,27 @@ var Shelter = function(_id) {
 
   // function which will reset list of requests for this
   // shelter
-  shelter.refreshRequests = function() {
+  shelter.refreshRequests = function(callback) {
     // do business logic to fetch new requests and
     // update this.daterequests
 
-    fetchComplete = false;
     // call async method to load dateRequext data
-    fetchRequests('js/js/mockData/dateRequestData.json', function(data){
+    fetchRequests('js/js/mockData/dateRequestData.json', function(data) {
         //return data here
         shelter.dateRequests = data;
-        fetchComplete = true;
-    });  
+        callback();
+    });
   };
 
   // Update table with date requests with status = 'P'
   // for this shelter
   shelter.getPendingRequests = function(tableId) {
-    updateTable(tableId, shelter.requests, 'pending'); // only put "pending"
+    updateTable(tableId, shelter.requests, 'pending');
   };
 
   // Update table with date requests of status = 'A' or 'D'
   shelter.getHistoryRequests = function(tableId) {
-    updateTable(tableId, shelter.requests, 'history'); // only historic 
+    updateTable(tableId, shelter.requests, 'history');
   };
  
   // Makes appropiate call to database/API to update
@@ -52,9 +48,6 @@ var Shelter = function(_id) {
   shelter.getDateRequests = function () {
     return shelter.dateRequests;
   };
-
-
-
 
   return shelter;
 };
