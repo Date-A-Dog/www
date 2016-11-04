@@ -1,0 +1,64 @@
+.grid{
+	display: grid;
+	grid-columns: 100px 100px 100px;
+	grid-rows: auto;
+	margin: 1%;
+	grid-row: 3;
+	grid-auto-flow: row;
+	justify-content: center;
+	grid-gap: 10px;
+}
+
+.grid-box{
+	border-radius: 5px;
+	padding: 10px;
+	width: 16.84%;
+	float: left;
+	margin: 0.5%;
+	background-color: #444;
+	color: #fff;
+}
+
+.grid p{
+	width: auto;
+	text-align: center;
+	color: #000000;
+}
+
+.grid-dog{
+	width:80%;
+	height:80%;
+	display: block;
+	margin: auto;
+	padding: 1em;
+}
+
+#requests{
+	margin: 0 auto;
+	width: 900px;
+	border: 1px solid #d9d9d9;
+}
+
+#requests thead{
+	background: #d9d9d9;
+}
+
+#requests #inside{
+	padding: 0;
+}
+
+#requests .accordion-container{
+	width: 100%;
+	background-color: #eeeeee;
+}
+
+#requests .accordion-container .accordion{
+	cursor: pointer;
+	
+	background:#333;
+	color: #fff;
+}
+
+#requests td, .requests th{
+	padding: 10px;
+}
