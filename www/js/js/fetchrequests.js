@@ -13,11 +13,6 @@
   httpRequest.open('GET', path);
   httpRequest.send();
 
-
 };
-
-
-
-
 
 //module.exports = fetchRequests;
