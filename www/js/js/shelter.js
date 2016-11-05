@@ -4,13 +4,13 @@
  * and methods to query and update server data.
  *
  */
-var Shelter = function(_id) { 
-  var fetchComplete; // avoid calling methods
-  
-  var shelter = {
-    id: _id,
-    dateRequests: null
-  };
+var Shelter = function(_id) {
+  /** Te array where all date requests for this shelter are stored*/
+  var dateRequests = null; 
+  /** The shelter id - determinded by petfinder.com */
+  var id = _id;
+  /**object to which all functinality is attached */
+  var shelter = {};
 
   // Updates this shelter's set of date requests
   // by calling database with most up-to-date data.
@@ -28,28 +28,43 @@ var Shelter = function(_id) {
     // call async method to load dateRequext data
     fetchRequests('../js/js/mockData/dateRequestData.json', function(data) {
         //return data here
-        shelter.dateRequests = data;
+        dateRequests = data;
         callback();
     });
   };
 
-  // Update table with date requests with status = 'P'
-  // for this shelter
-  shelter.getPendingRequests = function(tableId) {
-    if (!shelter.dateRequests){ 
+  // Getter function wich provides access to pending date
+  // requests objects for this shelter.
+  // 
+  // return:
+  //   An unordered array of dateRequest objects with status
+  //   equal to 'P'. Logs error, and returns null 
+  //   if called before shelter data is fetched.
+  // 
+  shelter.getPendingRequests = function() {
+    if (!dateRequests){ 
       console.log("Error: calling getPendingRequests() before fetching shelter data.");
       return null;
     }
-    updateTable(tableId, shelter.requests, 'pending');
+
+    return filterDateRequests('pending');
   };
 
-  // Update table with date requests of status = 'A' or 'D'
-  shelter.getHistoryRequests = function(tableId) {
-    if (!shelter.dateRequests){ 
+  // Getter function wich provides access to history date
+  // requests objects for this shelter. 
+  // 
+  // return:
+  //   An unorderedd array of dateRequest objects with staus
+  //   equal to 'A' or 'D'. Logs error, and returns 
+  //   null if called before shelter data is fetched.
+  // 
+  shelter.getHistoryRequests = function() {
+    if (!dateRequests){ 
       console.log("Error: calling getHistoryRequests() before fetching shelter data.");
       return null;
     }
-    updateTable(tableId, shelter.requests, 'history');
+   
+    return filterDateRequests('history');
   };
  
   // Makes appropiate call to database/API to update
@@ -80,13 +95,13 @@ var Shelter = function(_id) {
       return null;
     }
 
-    if (!shelter.dateRequests){ 
+    if (!dateRequests){ 
       console.log("Error: calling getDateRequestsById() before fetching shelter data.");
       return null;
     }
 
     // check if dateRequests has been initiated
-    if (!shelter.dateRequests || !hasDateRequests()) {
+    if (!dateRequests || !hasDateRequests()) {
       // refresh requests - pas this function as callback
       console.log("No dateRequests available for this shelter.");
 
@@ -95,11 +110,11 @@ var Shelter = function(_id) {
 
     // iterate through available requests until we find reqId
     // and return it if found
-    for (var i = 0; i < shelter.dateRequests.length; i++) {
-      if (shelter.dateRequests[i].id === requestId) {
+    for (var i = 0; i < dateRequests.length; i++) {
+      if (dateRequests[i].id === requestId) {
         // we have a match, return it
         console.log("found match");
-        return shelter.dateRequests[i];
+        return dateRequests[i];
       }
     }
     
@@ -113,7 +128,7 @@ var Shelter = function(_id) {
   //   shelter's dateRequest array has has not yet been initialized 
   //
   shelter.getDateRequests = function() {
-    if (!shelter.dateRequests){ 
+    if (!dateRequests){ 
       console.log("Error: calling getDateRequests() before fetching shelter data.");
       return null;
     }
@@ -122,7 +137,7 @@ var Shelter = function(_id) {
       console.log("No dateRequests available for this shelter.");
       return [];
     }
-    return shelter.dateRequests;
+    return dateRequests;
   };
 
   // private helper function checks is shelter.dateRequests is
@@ -132,8 +147,40 @@ var Shelter = function(_id) {
   //   true otherwise.
   //
   var hasDateRequests = function() {
-    return (shelter.dateRequests.length > 0);
+    return (dateRequests.length > 0);
   };
+
+  // Private helper function which filters daterequests 
+  // based on its status determined by the passed parameter.
+  // 
+  // param: 
+  //   filterBy - a string which determines which set of
+  //              date requests to return.
+  // returns:
+  //   An array of dateRequest objects with status == 'P' if
+  //   parameter 'filterBy' == "pendign", or status == 'A' | 'D' if 
+  //   parameter 'filetrBy' == "history".
+  var filterDateRequests = function(filterBy) {
+    var resultArray = [];
+
+    // iterate through each request available and filter
+    for (var i = 0; i < dateRequests.length; i++) {      
+      var status = dateRequests[i].status;
+
+      if (filterBy == 'pending' && status == 'P') {
+        // want pending requests, so status of 'P'
+        resultArray.push(dateRequests[i]); 
+
+      } else if (filterBy == 'history' && status != 'P') {
+        // any other status not equal to 'P' is history
+        resultArray.push(dateRequests[i]);
+      }
+
+    }
+
+    return resultArray;
+  };
+
 
   return shelter;
 };
