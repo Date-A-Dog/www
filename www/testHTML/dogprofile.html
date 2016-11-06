@@ -38,18 +38,26 @@
   </div>
 
 
-  <script src="../js/js/fetchrequests.js"></script>
-  <script src="../js/js/updatetable.js"></script>
-  <script src="../js/js/shelter.js"></script>
-  <script src="../js/js/dogprofile.js">  </script>
+  <script src="../js/fetchrequests.js"></script>
+  <script src="../js/updatetable.js"></script>
+  <script src="../js/shelter.js"></script>
+  <script src="../js/dogprofile.js"></script>
+  <script src="../js/daterequest.js"></script>
+  <script src="../js/daterprofile.js"></script>
  
   <script>
 
-   var shelter = Shelter("WA142");
+   var shelter = new Shelter("WA142");
+
    // only load data when refresh is done fetching
    shelter.refreshRequests(function(){ 
-      shelter.getPendingRequests('pending_table');
-      shelter.getHistoryRequests('history_table');
+      //shelter.getPendingRequests('pending_table');
+      //shelter.getHistoryRequests('history_table');
+      console.dir( shelter.getPendingRequests());
+      console.dir( shelter.getHistoryRequests());
+
+      updateTable('pending_table', shelter.getPendingRequests());
+      updateTable('history_table', shelter.getHistoryRequests());
     });
 
   </script>

@@ -26,7 +26,7 @@ var Shelter = function(_id) {
     // update this.daterequests
 
     // call async method to load dateRequext data
-    fetchRequests('../js/js/mockData/dateRequestData.json', function(data) {
+    fetchRequests('../js/mockData/dateRequestData.json', function(data) {
         //return data here
         dateRequests = data;
         callback();

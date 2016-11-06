@@ -1,4 +1,3 @@
-// loadRequests
 //var DaterProfile = require('/js/js/daterprofile.js');
 
 

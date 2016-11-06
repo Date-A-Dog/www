@@ -1,6 +1,6 @@
 [
 	{
-		"id": "187326",
+		"id": 187326,
 		"dogProfile": {
 			"id": 14553,
 			"name": "Chewbacca",
@@ -12,6 +12,7 @@
 			"lName": "Jones",
 			"email": "Mike.Jones@gmial.com",
 			"phone": "281-330-8004",
+			"fax": 293480923,
 			"address": {
 				"street": "652 N 16th St",
 				"state": "WA",
@@ -22,7 +23,7 @@
 		"status": "P"
 	},
 	{
-		"id": "187327",
+		"id": 187327,
 		"dogProfile": {
 			"id": 14553,
 			"name": "batdog",
@@ -34,6 +35,7 @@
 			"lName": "Doe",
 			"email": "John.doe@gmial.com",
 			"phone": "281-330-8004",
+			"fax": 9387428734,
 			"address": {
 				"street": "124 N Elmo St",
 				"state": "WA",
@@ -41,10 +43,10 @@
 			}
 		},
 		"dateTime": "tomorrow",
-		"status": "P"
+		"status": "D"
 	},
 	{
-		"id": "187328",
+		"id": 187328,
 		"dogProfile": {
 			"id": 14553,
 			"name": "mango",
@@ -56,6 +58,7 @@
 			"lName": "Donuts",
 			"email": "Joe.donuts@gmial.com",
 			"phone": "281-330-8004",
+			"fax": 904375390,
 			"address": {
 				"street": "125 N Park St",
 				"state": "WA",

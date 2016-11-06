@@ -2,7 +2,6 @@
  * Adress represents a physical address for a user,
  * and is composed of street, city, state, and zipcode
  */
-
 var Address = function(street, city, state, zipcode) {
 
   var address = {};
