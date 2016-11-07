@@ -19,6 +19,12 @@
 	color: #fff;
 }
 
+#mdiv {
+    /* other styles */
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
 .grid p{
 	width: auto;
 	text-align: center;
@@ -33,32 +39,32 @@
 	padding: 1em;
 }
 
-#requests{
+#requests, #history{
 	margin: 0 auto;
 	width: 900px;
 	border: 1px solid #d9d9d9;
 }
 
-#requests thead{
+#requests thead, #history thead{
 	background: #d9d9d9;
 }
 
-#requests #inside{
+#inside{
 	padding: 0;
 }
 
-#requests .accordion-container{
+.accordion-container{
 	width: 100%;
 	background-color: #eeeeee;
 }
 
-#requests .accordion-container .accordion{
+.accordion-container .accordion{
 	cursor: pointer;
 	
 	background:#333;
 	color: #fff;
 }
 
-#requests td, .requests th{
+#inside td, #inside th{
 	padding: 10px;
 }

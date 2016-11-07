@@ -4,6 +4,7 @@ $('.accordion-container').each(function(){
   
   tbody.hide();
   thead.click(function(){
-    tbody. slideToggle();
+    tbody.slideToggle();
   })
 })
+
