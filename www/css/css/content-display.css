@@ -1,6 +1,7 @@
 body {
 	--bg-color: #E3EFC9;
 	--darker-bg-color: #cdde92;
+	--even-darker-bg-color: #76AD59;
 	--text-color: #7a450f;
 	--title-color: #4c2b09;
 	--accent-color: #f38630;
@@ -17,6 +18,8 @@ body {
 	--table-outer-bg: var(--darker-bg-color);
 	--table-inner-text-color: var(--text-color);
 	--table-inner-bg: var(--palest);
+	--table-inner-selected-text-color(--title-color);
+	--table-inner-selected-bg(--even-darker-bg-color);
 }
 
 /* main table properties*/
@@ -47,6 +50,10 @@ body {
 	background-color: var(--table-inner-bg);
 	color: var(--table-inner-text-color);
 }
+
+/* inner table entries selected?*/
+
+
 /* outer table entires*/
 .accordion-container .accordion{
 	cursor: pointer;
@@ -61,7 +68,19 @@ body {
 	padding: 10px;
 	width: 33%;
 }
+.request-buttons{
+	padding: 1em;
+}
 
-#inside .expanded{
-	width: 100%;
+.deny {
+	text-align: center;
+}
+.approve {
+	text-align: right;
+}
+.approve, .deny, .undo{
+	
+}
+.request-image{
+	text-align: center;
 }
