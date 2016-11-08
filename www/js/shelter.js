@@ -1,3 +1,5 @@
+//var fs = require("fs");   // uncomment when testing
+
 /**
  * shelter object represents a shelter session for the front
  * end webapp. This object is composed of a set of date requests
@@ -10,7 +12,12 @@ var Shelter = function(_id) {
   /** The shelter id - determinded by petfinder.com */
   var id = _id;
   /**object to which all functinality is attached */
-  var shelter = {};
+  var shelter = {
+    testingMockData: false
+  };
+
+  /** boolean to control flow of mock data */
+  //shelter.testingMockData = false;
 
   // Updates this shelter's set of date requests
   // by calling database with most up-to-date data.
@@ -21,16 +28,25 @@ var Shelter = function(_id) {
   // callback - Is a callback function to be invoked upon
   //            completion of async task.
   //                            
-  shelter.refreshRequests = function(callback) {
-    // do business logic to fetch new requests and
-    // update this.daterequests
+  shelter.updateDateRequests = function(callback) {
+    // fetch new requests from database 
+    if (shelter.testingMockData) {
+      console.log("Reading from test mock data... ");
+      var content = fs.readFileSync("./test/mockData/testData.txt");
+      var jsonContent = JSON.parse(content);
 
-    // call async method to load dateRequext data
-    fetchRequests('../js/mockData/dateRequestData.json', function(data) {
+      dateRequests = jsonContent
+      console.log("Reading complete... ");
+    
+
+    } else {
+             // call async method to load dateRequext data
+      fetchRequests('../js/mockData/dateRequestData.json', function(data) {
         //return data here
         dateRequests = data;
         callback();
-    });
+      });
+    }
   };
 
   // Getter function wich provides access to pending date
@@ -175,7 +191,6 @@ var Shelter = function(_id) {
         // any other status not equal to 'P' is history
         resultArray.push(dateRequests[i]);
       }
-
     }
 
     return resultArray;
