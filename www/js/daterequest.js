@@ -12,8 +12,10 @@ DateRequest = function(requestId, dogProfile, daterProfile, dateTime, status) {
   request.daterProfile = daterProfile;
   request.dateTime     = dateTime;
   request.status       = status;
-  //Date
   
+  // log entry
+  console.log("Date request object created: " + request);
+
   return request;
 };
 module.exports = DateRequest;
