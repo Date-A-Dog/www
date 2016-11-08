@@ -68,9 +68,9 @@ INSERT INTO Request (dog_id, shelter_id, user_id, status, requested_date)
 
 
 -- Create User Account
-
-INSERT INTO Users (email)
-    VALUES ('');
+-- ###### CHANGES to INSERT - first and last name, no longer autoinc user_id
+INSERT INTO Users (user_id, first_name, last_name, email)
+    VALUES ($1, $2, $3, $4);
 
 
 -- Update User Account with Application Data
@@ -89,10 +89,9 @@ WHERE user_id = 1; --VAR
 
 
 -- Get Date Request Detail
-
-SELECT r.dog_id, r.user_id, r.requested_date, r.status,
-  d.dog_name,
-  u.email, u.full_name, u.street, u.city, u.state, u.zipcode, u.phone
+-- ###### CHANGES to SELECT - first and last name
+SELECT r.dog_id, r.user_id, r.requested_date, r.status, d.dog_name,
+  u.email, u.first_name, u.last_name, u.street, u.city, u.state, u.zipcode, u.phone
 FROM Request r
   JOIN Users u ON r.user_id = u.user_id
   JOIN Dogs d ON r.dog_id = d.dog_id
@@ -112,9 +111,10 @@ ORDER BY r.requested_date ASC;
 
 
 -- Get Date History
+-- ###### CHANGES to SELECT - first and last name
 
 SELECT r.req_id, r.dog_id, r.user_id, r.requested_date, r.status,
-  u.full_name, d.dog_name
+  u.first_name, u.last_name, d.dog_name
 FROM Request r
   JOIN Users u ON r.user_id = u.user_id
   JOIN Dogs d ON r.dog_id = d.dog_id
