@@ -1,6 +1,3 @@
-//var DaterProfile = require('/js/js/daterprofile.js');
-
-
 // **Function temporarily inplace until we ca pull data from our data base.**
 //
 // Reads mock data JSON file located in the given path.
@@ -12,7 +9,6 @@ function fetchRequests(path, callback) {
   httpRequest.onreadystatechange = function() {
   	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
   	  var data = JSON.parse(httpRequest.responseText);
-
   		if (callback) {
         // pass filtered array to callback
         callback(filterDateRequestProperties(data));
@@ -23,7 +19,6 @@ function fetchRequests(path, callback) {
   httpRequest.open('GET', path);
   httpRequest.send();
 };
-
 
 // Iterates the given array of dateRequests extracts properties
 // and generates a new object array. Each dateRequest object
@@ -87,4 +82,8 @@ function filterDateRequestProperties(data) {
 
   return filteredArray;
 };
+
+module.exports = filterDateRequestProperties;
+
+
 
