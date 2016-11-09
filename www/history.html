@@ -3,120 +3,172 @@
  <head>
 	<meta charset="utf-8"/>
 	<title>Date a Dog</title>
-	<link rel ="stylesheet" type="text/css" href="style.css" />
+
+	<link rel="icon" href="sample.png">
+	
+	<link rel ="stylesheet" type="text/css" href="css/style.css" />
+	<link rel ="stylesheet" type="text/css" href="css/content-display.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--<script src="js/updatetable.js"></script>-->
+	<script src="js/fbinitjs"></script>
+	<script src="js/fblogin.js"></script>
+	<script src="js/accordion.js"></script>
+	<script src="js/createhistorytablehere"></script>
  </head>
-	<body>
-		<script src="fbinitjs"></script>
-		<script src="fblogin.js"></script>
-		<nav>
-		<ul>
-			<li>
-				<a href="index.html">Main</a>
-			</li>
-				
-			<li>
-				<a href="history.html">History</a>
-			</li>
-		</ul>
+<body id="dad">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">Date A Dog</a>
+			</div>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="requests.html">Requests</a></li>
+				<li><a href="history.html">History</a></li>
+				<li><a href="index.html"><!--<span class="glyphicon glyphicon-log-in"></span> -->Logout</a></li>
+			</ul>
+		</div>
 	</nav>
-	<form action="logout.html" id = "loginout">
-		<input type="submit" value="Log Out" />
-	</form>
 	
-	<script>
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '{your-app-id}',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.5' // use graph api version 2.5
-  });
-
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-	
+	<!--need script to create tables?-->
+	<!--<script>updateTable("", )</script>-->
 	
 	<h1>History</h1>
-	<p>History says hi.</p>
+	<!-- Bootstrap version -->
+	<!--<table id="accordion" role="tablist" aria-multiselectable="true">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Dater</th>
+				<th>Dog</th>
+				<th>When</th>
+				<th>Status</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		  <div class="card">
+		    
+			<tr class="card-header" role="tab" id="headingOne">
+				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					id1
+				</td>
+				<!--to allow the rest of the columns to also act as above-->
+				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					dater1
+				</td>
+				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					dog1
+				</td>
+				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					time1
+				</td>
+				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					status1
+				</td>
+				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+				</td>
+			</tr>
+
+			<tr id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+			  <td class="card-block">content</td>
+			</tr>
+			
+		  </div>
+		  <div class="card">
+			<tr class="card-header" role="tab" id="headingTwo">
+				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					id2
+				</td>
+				<!--to allow the rest of the columns to also act as above-->
+				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					dater2
+				</td>
+				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					dog2
+				</td>
+				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					time2
+				</td>
+				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					status2
+				</td>			</tr>
+			<tr id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+			  <td class="card-block">content2</td>
+			</tr>
+		  </div>
+		  <div class="card">
+			<tr class="card-header" role="tab" id="headingThree">
+				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				  Collapsible Group Item #3
+				</td>
+			</tr>
+			<tr id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+			  <td class="card-block">content3</td>
+			</tr>
+		  </div>
+		</tbody>
+	</table>-->
+	<!-- nested table version-->
+	<table id="history">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Dog</th>
+				<th>Dater</th>
+				<th>When</th>
+				<th>Status</th>
+				<th class="chevron"></th><!--chevron-->
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="inside" colspan="6">
+					<!-- Example entries go here-->
+					<table class="accordion-container">
+						<thead>
+							<tr>
+								<td class="accordion">id here</td>
+								<td class="accordion">dog here</td>
+								<td class="accordion">dater here</td>
+								<td class="accordion">some date</td>
+								<td class="accordion"> status here</td>
+								<td class="accordion chevron">
+									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>put stuff here</td>
+							</tr>
+						</tbody>
+						</table>
+					<table class="accordion-container">
+						<thead>
+							<tr>
+								<td class="accordion">id here</td>
+								<td class="accordion">dog here</td>
+								<td class="accordion">dater here</td>
+								<td class="accordion">some date</td>
+								<td class="accordion"> status here</td>
+								<td class="accordion chevron">
+									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>put stuff here</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
  </body>

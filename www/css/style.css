@@ -11,26 +11,36 @@ body {
 	--nav-text-color: var(--title-color);
 	--nav-bg-color: var(--palest);
 	--nav-hover-color: var(--pale-title-color);
+	--site-title-color: var(--nav-text-color);
 	
-	margin: 0px;
-	padding: 0px;
-	background: var(--bg-color);
-	color: var(--text-color);
-	font-family: var(--main-font);
+
 }
 
-h1 {
+/* For overriding bootstrap, use #dad id */
+
+#dad h1 {
 	color: var(--title-color);
 	text-align: center;
+	display: block;
+	font-size: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
-p {
+#dad p {
 	background: #ffffff;
 	display: block;
 	padding: 0.5em 0.5em 0.5em 0.5em;
 	width: 90%;
 	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
 	text-align: center;
+}
+
+#nav-mainsite{
+	font-weight: bold;
+	float: left;
 }
 
 nav{
@@ -42,8 +52,9 @@ nav ul{
 	margin: 0px;
 	padding: 0px;
 	line-height: 2em;
-	white-space: nowrap;
 	margin-bottom: 0.2em;
+	float: right;
+	display: block;
 }
 
 nav li{
@@ -60,15 +71,41 @@ nav li a{
 	border-bottom: 0.2em solid var(--nav-hover-color);
 }
 
-nav li a:link, nav li a:visited{
+#dad nav li a:link, nav li a:visited{
 	text-decoration: none;
 	color: var(--nav-text-color);
 }
 
-nav li a:hover{
+#dad nav li a:hover{
 	background-color: var(--nav-hover-color);
 }
 
 #loginout {
 	text-align: right;
+}
+
+
+#dad .navbar-brand{
+	color: var(--site-title-color);
+}
+#dad .navbar-nav li a{
+	color: var(--nav-text-color);
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+#dad .navbar-nav, #dad .navbar-header, #dad nav .container-fluid{
+	background-color: var(--nav-bg-color);
+}
+#dad .navbar-inverse{
+	border-color: var(--nav-bg-color);
+}
+#dad {
+	background-color: var(--bg-color);
+	margin: 0px;
+	padding: 0px;
+	background: var(--bg-color);
+	color: var(--text-color);
+	font-family: var(--main-font);
 }
