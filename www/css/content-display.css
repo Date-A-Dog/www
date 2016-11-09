@@ -1,3 +1,6 @@
+/* CSS for the display of content loaded through js on the Date-A-Dog website. */
+
+/* Variables for use throughout the document */
 body {
 	--bg-color: #E3EFC9;
 	--darker-bg-color: #cdde92;
@@ -18,12 +21,12 @@ body {
 	--table-outer-bg: var(--darker-bg-color);
 	--table-inner-text-color: var(--text-color);
 	--table-inner-bg: var(--palest);
-	--table-inner-selected-text-color(--title-color);
-	--table-inner-selected-bg(--even-darker-bg-color);
+	/*--table-inner-selected-text-color(--title-color);
+	--table-inner-selected-bg(--even-darker-bg-color);*/
 }
 
 /* main table properties*/
-#requests, #history{
+#requests, #history {
 	margin: 0 auto;
 	width: 900px;
 	border: 1px solid var(--palest);
@@ -31,17 +34,14 @@ body {
 }
 
 /* labels for main table */
-#requests th{
+#requests th, #history th{
 	padding-left: 1em;
 }
 
+/* Main table properties per element */
 #requests thead, #history thead{
 	background: var(--palest);
-	border-bottom: 1px solid var(--table-inner-bg);
-}
-
-#inside{
-	padding: 0;
+	border-bottom: 1px solid var(--palest);
 }
 
 /* inner table entries*/
@@ -55,7 +55,7 @@ body {
 
 
 /* outer table entires*/
-.accordion-container .accordion{
+.accordion-container .accordion{ /*.card-header{*/
 	cursor: pointer;
 	
 	background:var(--table-outer-bg);
@@ -63,15 +63,21 @@ body {
 	
 }
 
-/* entries in table*/
-#inside td, #inside th{
-	padding: 10px;
-	width: 33%;
-}
-.request-buttons{
-	padding: 1em;
+#requests th, #history th {
+	width: 19%;
 }
 
+/* entries in table, setting width here keeps them from changing when expanded???*/
+#inside td, #inside th{
+	padding: 10px;
+	width: 19%;
+}
+
+#requests .chevron, #history .chevron{
+	width: 5%;
+}
+
+/* Placement inside table elements for request buttons, images */
 .deny {
 	text-align: center;
 }

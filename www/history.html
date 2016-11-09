@@ -11,6 +11,7 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--<script src="js/js/updatetable.js"></script>-->
 	<script src="js/js/fbinitjs"></script>
 	<script src="js/js/fblogin.js"></script>
 	<script src="js/js/accordion.js"></script>
@@ -31,26 +32,113 @@
 		</div>
 	</nav>
 	
+	<!--need script to create tables?-->
+	<!--<script>updateTable("", )</script>-->
 	
 	<h1>History</h1>
-		<table id="history">
+	<!-- Bootstrap version -->
+	<!--<table id="accordion" role="tablist" aria-multiselectable="true">
 		<thead>
 			<tr>
+				<th>ID</th>
+				<th>Dater</th>
 				<th>Dog</th>
 				<th>When</th>
 				<th>Status</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		  <div class="card">
+		    
+			<tr class="card-header" role="tab" id="headingOne">
+				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					id1
+				</td>
+				<!--to allow the rest of the columns to also act as above-->
+				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					dater1
+				</td>
+				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					dog1
+				</td>
+				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					time1
+				</td>
+				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					status1
+				</td>
+				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+				</td>
+			</tr>
+
+			<tr id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+			  <td class="card-block">content</td>
+			</tr>
+			
+		  </div>
+		  <div class="card">
+			<tr class="card-header" role="tab" id="headingTwo">
+				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					id2
+				</td>
+				<!--to allow the rest of the columns to also act as above-->
+				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					dater2
+				</td>
+				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					dog2
+				</td>
+				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					time2
+				</td>
+				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					status2
+				</td>			</tr>
+			<tr id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+			  <td class="card-block">content2</td>
+			</tr>
+		  </div>
+		  <div class="card">
+			<tr class="card-header" role="tab" id="headingThree">
+				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				  Collapsible Group Item #3
+				</td>
+			</tr>
+			<tr id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+			  <td class="card-block">content3</td>
+			</tr>
+		  </div>
+		</tbody>
+	</table>-->
+	<!-- nested table version-->
+	<table id="history">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Dog</th>
+				<th>Dater</th>
+				<th>When</th>
+				<th>Status</th>
+				<th class="chevron"></th><!--chevron-->
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td id="inside" colspan="3">
-					<!-- Example entries go here -->
-						<table class="accordion-container">
-							<thead>
-								<tr>
-									<td class="accordion">history here</td>
-									<td class="accordion">some date</td>
-									<td class="accordion"> status here</td>
+				<td id="inside" colspan="6">
+					<!-- Example entries go here-->
+					<table class="accordion-container">
+						<thead>
+							<tr>
+								<td class="accordion">id here</td>
+								<td class="accordion">dog here</td>
+								<td class="accordion">dater here</td>
+								<td class="accordion">some date</td>
+								<td class="accordion"> status here</td>
+								<td class="accordion chevron">
+									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+								</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -62,9 +150,14 @@
 					<table class="accordion-container">
 						<thead>
 							<tr>
-								<td class="accordion">history here</td>
+								<td class="accordion">id here</td>
+								<td class="accordion">dog here</td>
+								<td class="accordion">dater here</td>
 								<td class="accordion">some date</td>
 								<td class="accordion"> status here</td>
+								<td class="accordion chevron">
+									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
+								</td>
 							</tr>
 						</thead>
 						<tbody>
