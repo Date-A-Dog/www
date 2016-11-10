@@ -1,4 +1,8 @@
-//var fs = require("fs");   // uncomment when testing
+
+/******* Comment out when not testing ***********************/
+var fs = require("fs");
+var filterDateRequestProperties = require("./fetchrequests");
+/************************************************************/
 
 /**
  * shelter object represents a shelter session for the front
@@ -6,18 +10,24 @@
  * and methods to query and update server data.
  *
  */
-var Shelter = function(_id) {
+var Shelter = function(_id, _testingMockData) {
+
+  if (arguments < 1 || _id === undefined) {
+    throw Error("shelterId is required when constructing Shelter object.");
+  }
+
+
   /** Te array where all date requests for this shelter are stored*/
   var dateRequests = null; 
   /** The shelter id - determinded by petfinder.com */
   var id = _id;
+  /** Determines if we are testing - defaults to false if no second arg given */
+  var testingMockData = _testingMockData || false;
   /**object to which all functinality is attached */
   var shelter = {
-    testingMockData: false
   };
 
-  /** boolean to control flow of mock data */
-  //shelter.testingMockData = false;
+
 
   // Updates this shelter's set of date requests
   // by calling database with most up-to-date data.
@@ -30,18 +40,14 @@ var Shelter = function(_id) {
   //                            
   shelter.updateDateRequests = function(callback) {
     // fetch new requests from database 
-    if (shelter.testingMockData) {
-      console.log("Reading from test mock data... ");
+    if (testingMockData) {
+      // read from mock data
       var content = fs.readFileSync("./test/mockData/testData.txt");
       var jsonContent = JSON.parse(content);
-
-      dateRequests = jsonContent
-      console.log("Reading complete... ");
-    
-
+      dateRequests = filterDateRequestProperties(jsonContent);
     } else {
              // call async method to load dateRequext data
-      fetchRequests('../js/mockData/dateRequestData.json', function(data) {
+      fetchRequests('./mockData/dateRequestData.json', function(data) {
         //return data here
         dateRequests = data;
         callback();
@@ -58,9 +64,8 @@ var Shelter = function(_id) {
   //   if called before shelter data is fetched.
   // 
   shelter.getPendingRequests = function() {
-    if (!dateRequests){ 
-      console.log("Error: calling getPendingRequests() before fetching shelter data.");
-      return null;
+    if (dateRequests == null){ 
+      throw Error("Calling getPendingRequests() before fetching shelter data.");
     }
 
     return filterDateRequests('pending');
@@ -75,9 +80,8 @@ var Shelter = function(_id) {
   //   null if called before shelter data is fetched.
   // 
   shelter.getHistoryRequests = function() {
-    if (!dateRequests){ 
-      console.log("Error: calling getHistoryRequests() before fetching shelter data.");
-      return null;
+    if (dateRequests == null){ 
+      throw Error("Calling getHistoryRequests() before fetching shelter data.");
     }
    
     return filterDateRequests('history');
@@ -107,13 +111,11 @@ var Shelter = function(_id) {
   shelter.getDateRequestById = function(requestId) {
     // check param is provided
     if (arguments.length != 1) {
-      console.log("Error: this.getRequestById requires parameter.")
-      return null;
+      throw Error("getRequestById requires requestId parameter.")
     }
 
-    if (!dateRequests){ 
-      console.log("Error: calling getDateRequestsById() before fetching shelter data.");
-      return null;
+    if (dateRequests == null){ 
+      throw Error("Error: calling getDateRequestsById() before fetching shelter data.");
     }
 
     // check if dateRequests has been initiated
@@ -129,7 +131,7 @@ var Shelter = function(_id) {
     for (var i = 0; i < dateRequests.length; i++) {
       if (dateRequests[i].id === requestId) {
         // we have a match, return it
-        console.log("found match");
+        console.log("found match" + dateRequests[i].daterProfile.fName);
         return dateRequests[i];
       }
     }
@@ -144,9 +146,8 @@ var Shelter = function(_id) {
   //   shelter's dateRequest array has has not yet been initialized 
   //
   shelter.getDateRequests = function() {
-    if (!dateRequests){ 
-      console.log("Error: calling getDateRequests() before fetching shelter data.");
-      return null;
+    if (dateRequests == null){ 
+      throw Error("Error: calling getDateRequests() before fetching shelter data.");
     }
 
     if(!hasDateRequests()) {

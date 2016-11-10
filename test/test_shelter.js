@@ -5,50 +5,75 @@ var Shelter = require("../www/js/shelter");
 describe("Shelter", function() {
   var SHELTER_ID = "WA142";
 
-
-  describe("Shelter Constructor", function() {
-  	it("builds a Shelter Object", function() {
-  		/** do testign here**/
-      //var shelter = new Shelter(SHELTER_ID);
-      var shelter;
-      assert.equal(1, 1);
+  /**
+  * Test construction of shelter objects
+  */
+  describe("Test Constructor", function() {
+    //test 0
+  	it("0. Correct parameters", function() {
+      assert.notEqual( Shelter(SHELTER_ID, true), undefined);
   	});
+    // test 1
+    it("1. No test boolean parameter given", function() {
+      assert.notEqual(Shelter(SHELTER_ID), undefined);
+    });
+    // test 2
+    it("2. Exception when no parameters given", function() {
+      assert.throws(Shelter, Error);
+    });
+
   });
 
-  /** Tests for getPendingRequests() method **/
-  describe("Shelter getPendingRequests()", function() {
-    var shelter = Shelter(SHELTER_ID);
-    shelter.testingMockData = true;
+  /** 
+  * Tests for getPendingRequests() method 
+  */
+  describe("Test getPendingRequests()", function() {
+    var shelter = Shelter(SHELTER_ID, true);
 
+    // test 0
+    it("0. Exception when calling before loading data.", function() {
+      assert.throws(shelter.getPendingRequests(), Error);
+    });
+
+    // load data and get history results before proceding with tests
     shelter.updateDateRequests(); // no call back, this is sync
     var results = shelter.getPendingRequests(); 
 
+    // test 1
     it("1. Correct number of elemnents", function() {
       // ensure data is loaded before asserting
       assert.equal(1, results.length);
       
-    }); // end of 1.
+    });
+    // test 2
     it("2. Correct status for each element", function() {
       for (var i = 0; i < results.length; i++) {
         assert.equal("P", results[i].status);
       }      
-    }); // endo of 2     
-  }); // end of getPendingRequest() test
+    });
+  });
 
-  /** Tests for getHistoryRequests() method **/
-  describe("Shelter getHistoryRequests()", function() {
-    var shelter = Shelter(SHELTER_ID);
-    shelter.testingMockData = true;
+  /**
+  * Tests for getHistoryRequests() method 
+  */
+  describe("Test getHistoryRequests()", function() {
+    var shelter = Shelter(SHELTER_ID, true);
+    
+    // test 0
+    it("0. Exception when calling before loading data.", function() {
+      assert.throws(shelter.getHistoryRequests(), Error);
+    });
 
-    shelter.updateDateRequests(); // no call back, this is sync
+    // load data and get history results before proceding with tests
+    shelter.updateDateRequests(); 
     var results = shelter.getHistoryRequests(); 
 
+    // test 1
     it("1. Correct number of elemnents", function() {
       // ensure data is loaded before asserting    
       assert.equal(2, results.length);
-      
-    }); // end of 1.
-
+    });
+    // test 2
     it("2. Correct status for each element", function() {
       var allValidHistoryStatus = true;
       for (var i = 0; i < results.length; i++) {
@@ -60,21 +85,66 @@ describe("Shelter", function() {
         assert.notEqual("P", status);
         assert.equal(true, allValidHistoryStatus);
       }      
-    }); // endo of 2
+    });
       
-  }); // end of getHistoryRequest() test
+  });
 
+  /** 
+  * Tests for getDateRequest() method 
+  */
+  describe("Test getDateRequests()", function() {
+    var shelter = Shelter(SHELTER_ID, true);
+    // test 0
+    it("0. Exception when calling before loading data.", function() {
+      assert.throws(shelter.getDateRequests(), Error);
+    });
 
-  /** Tests for getDateRequest() method **/
-  describe("Shelter getDateRequests()", function() {
-    var shelter = Shelter(SHELTER_ID);
-    shelter.testingMockData = true;
-    shelter.updateDateRequests();
-    var results = shelter.getDateRequests();
-
-    it("1. Correct number of elements", function() {
-      
+    // load data and get history results before proceding with tests
+    shelter.updateDateRequests(); 
+    var results = shelter.getDateRequests(); 
+    
+    // test 1
+    it("1. Correct number of elemnents", function() {
+      // ensure data is loaded before asserting    
+      assert.equal(3, results.length);
     });
   });
+
+  /**
+  * Tests for getDateRequestById() method
+  */
+  // TODO: implement testing
+   describe("Test getDateRequestById()", function() {
+     // test 0
+     it("0. Exception when calling before loading data", function() {
+      var shelter = Shelter(SHELTER_ID, true);
+      // We pass a function since to enable callimg with parameters
+       assert.throws(function() {shelter.getDateRequestById(89686);}, Error);
+     });
+     var shelter = Shelter(SHELTER_ID, true);
+     // load data before proceding with tests
+     shelter.updateDateRequests();
+
+     // test 1
+     it("1. Existing requestId", function() {
+      var result = shelter.getDateRequestById(187327);
+      assert.notEqual(result, undefined);
+      assert.equal(result.daterProfile.fName, "John");
+      assert.equal(result.daterProfile.phone, "281-330-8004");
+      assert.equal(result.daterProfile.fax, undefined);
+      assert.equal(result.daterProfile.address.street, "124 N Elmo St");
+
+      assert.equal(result.dogProfile.id, 14553000);
+     });
+     // test 2
+     it ("2. Non-existing requestId", function() {
+
+     });
+     // test 3
+     it ("3. Searching on empty dateRequests", function() {
+
+     });
+   });
+
 
 }); // end of shlelter test
