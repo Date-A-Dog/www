@@ -11,7 +11,7 @@ updateTable = function(tableId, dateRequests) {
   var table = document.getElementById(tableId);
 
   // remove all record rows from table
-  if(table.rows != null)}
+  if(table.rows != null){
     while(table.rows.length > 1) {
       table.deleteRow(1);
     }

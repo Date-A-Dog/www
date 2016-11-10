@@ -145,6 +145,13 @@
 			</tr>
 		</thead>
 	</table>
-	<script>updateTable("sampleTable",fetchRequests());</script>
+	<script>
+		//var currentRequests = fetchRequests("request.html", updateTable());
+		var currentRequests = [
+			['id1','dater1','dog1','when1','status1'],
+			['id2','dater2','dog2','when2','status2']
+		];
+		updateTable("sampleTable", currentRequests);
+	</script>
 	
  </body>
