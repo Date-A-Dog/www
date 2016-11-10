@@ -12,10 +12,11 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/fbinitjs"></script>
+	<script src="js/fbinit.js"></script>
 	<script src="js/fblogin.js"></script>
 	<script src="js/accordion.js"></script>
-	<script src="js/createrequesttablehere"></script>
+	<script src="js/updatetable.js"></script>
+	<script src="js/fetchrequests.js"></script>
 	<script src="js/chevron.js"></script>
  </head>
 <body id="dad">
@@ -131,8 +132,11 @@
 			</tr>
 		</tbody>
 	</table>
-	<!--<table id="sampleTable">
-		var requestArray = ;
-		<script>updateTable("sampleTable",requestArray);</script>
-	</table>-->
+	<script>
+		//var requestArray = ;
+		updateTable("sampleTable",fetchRequests());
+	</script>
+	<table id="sampleTable">
+		
+	</table>
  </body>
