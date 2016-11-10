@@ -16,6 +16,10 @@
 	<script src="js/fblogin.js"></script>
 	<script src="js/chevron.js"></script>
 	<script src="js/accordion.js"></script>
+	<script src="js/address.js"></script>
+	<script src="js/dogprofile.js"></script>
+	<script src="js/daterprofile.js"></script>
+	<script src="js/daterequest.js"></script>
 	<script src="js/fetchrequests.js"></script>
 	<script src="js/updatetable.js"></script>
  </head>
@@ -147,9 +151,20 @@
 	</table>
 	<script>
 		//var currentRequests = fetchRequests("request.html", updateTable());
+		var dogOne = new DogProfile(1,"bob","M","sample.png");
+		var dogTwo = new DogProfile(2, "lucy", "F", "sample.png");
+		var addressOne = new Address("the sky","is", "not blue", 98105);
+		var addressTwo = new Address("street", "city","state",98105);
+		var daterOne = new DaterProfile("Mint","Mocha","peppermintforever@nothing.com","206-555-5555",addressOne);
+		var daterTwo = new DaterProfile("Namae wa", "nemo desu", "trickedbyOd@nothing.com", "405-555-5555", addressTwo);
+		var timeOne = new Date(1478829999999);
+		var timeTwo = new Date(1478825000000);
+		var status = "limbo";
+		var requestOne = new DateRequest(1,dogOne, daterOne, timeOne, status);
+		var requestTwo = new DateRequest(10, dogTwo, daterTwo, timeTwo, status);
 		var currentRequests = [
-			['id1','dater1','dog1','when1','status1'],
-			['id2','dater2','dog2','when2','status2']
+			requestOne,
+			requestTwo
 		];
 		updateTable("sampleTable", currentRequests);
 	</script>
