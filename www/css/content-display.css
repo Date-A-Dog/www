@@ -26,7 +26,7 @@ body {
 }
 
 /* main table properties*/
-#requests, #history {
+#requests, #history, #sampleTable {
 	margin: 0 auto;
 	width: 900px;
 	border: 1px solid var(--palest);
@@ -34,12 +34,12 @@ body {
 }
 
 /* labels for main table */
-#requests th, #history th{
+#requests th, #history th, #sampleTable th{
 	padding-left: 1em;
 }
 
 /* Main table properties per element */
-#requests thead, #history thead{
+#requests thead, #history thead, #sampleTable thead{
 	background: var(--palest);
 	border-bottom: 1px solid var(--palest);
 }
@@ -49,6 +49,11 @@ body {
 	width: 100%;
 	background-color: var(--table-inner-bg);
 	color: var(--table-inner-text-color);
+}
+
+#sampleTable tbody tr {
+	background:var(--table-outer-bg);
+	border: 1px solid var(--palest);
 }
 
 /* inner table entries selected?*/
