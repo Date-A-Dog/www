@@ -14,10 +14,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/fbinit.js"></script>
 	<script src="js/fblogin.js"></script>
-	<script src="js/accordion.js"></script>
-	<script src="js/updatetable.js"></script>
-	<script src="js/fetchrequests.js"></script>
 	<script src="js/chevron.js"></script>
+	<script src="js/accordion.js"></script>
+	<script src="js/fetchrequests.js"></script>
+	<script src="js/updatetable.js"></script>
  </head>
 <body id="dad">
 	<nav class="navbar navbar-inverse">
@@ -57,7 +57,7 @@
 								<td class="accordion">dog here</td>
 								<td class="accordion">dater here</td>
 								<td class="accordion">some date</td>
-								<td class="accordion"> status here</td>
+								<td class="accordion">status here</td>
 								<td class="accordion chevron">
 									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
 								</td>
@@ -96,7 +96,7 @@
 								<td class="accordion">dog here</td>
 								<td class="accordion">dater here</td>
 								<td class="accordion">some date</td>
-								<td class="accordion"> status here</td>
+								<td class="accordion">status here</td>
 								<td class="accordion chevron">
 									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
 								</td>
@@ -132,11 +132,19 @@
 			</tr>
 		</tbody>
 	</table>
-	<script>
-		//var requestArray = ;
-		updateTable("sampleTable",fetchRequests());
-	</script>
+	
+	<!-- Javascript generated table -->
 	<table id="sampleTable">
-		
+		<thead>
+			<tr>
+				<td>id</td>
+				<td>dog</td>
+				<td>dater</td>
+				<td>some</td>
+				<td>status</td>
+			</tr>
+		</thead>
 	</table>
+	<script>updateTable("sampleTable",fetchRequests());</script>
+	
  </body>
