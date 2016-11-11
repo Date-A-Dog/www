@@ -1,3 +1,10 @@
+
+/*******comment out when not testing ********/
+//var DaterProfile = require("./daterprofile");
+//var DogProfile = require("./dogprofile");
+//var DateRequest = require("./daterequest");
+/*******************************************/
+
 // **Function temporarily inplace until we ca pull data from our data base.**
 //
 // Reads mock data JSON file located in the given path.
@@ -64,7 +71,7 @@ function filterDateRequestProperties(data) {
     var dater = DaterProfile (request.daterProfile.fName, 
                               request.daterProfile.lName, 
                               request.daterProfile.email,
-                              request.daterProfile.phoneNumber, 
+                              request.daterProfile.phone, 
                               request.daterProfile.address);
     // parse dogProfile inot object
     var dog = DogProfile(request.dogProfile.id,
