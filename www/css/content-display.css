@@ -59,6 +59,12 @@ body {
 #accordion .accordionEle {
 	background: var(--table-inner-bg);
 	height: auto !important;
+	padding: 0.5em;
+}
+
+#accordion .accordion-img {
+	display:inline;
+	height: 6em;
 }
 
 #accordion p{
