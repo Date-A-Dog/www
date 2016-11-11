@@ -35,129 +35,14 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="requests.html">Requests</a></li>
 				<li><a href="history.html">History</a></li>
-				<li><a href="index.html"><!--<span class="glyphicon glyphicon-log-in"></span> -->Logout</a></li>
+				<li><a href="index.html">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<h1>Requests</h1>
-	<!--
-	<table id="requests">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Dog</th>
-				<th>Dater</th>
-				<th>When</th>
-				<th>Status</th>
-				<th class="chevron"></th><!--chevron
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td id="inside" colspan="6">
-					<!-- Example entries go here 
-					<table class="accordion-container">
-						<thead>
-							<tr>
-								<td class="accordion">id here</td>
-								<td class="accordion">dog here</td>
-								<td class="accordion">dater here</td>
-								<td class="accordion">some date</td>
-								<td class="accordion">status here</td>
-								<td class="accordion chevron">
-									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="expanded">
-								<td class="request-image"><img src="sample.png" alt="sample dog pic" height="100" weight="100"></td>
-								<td>Dater Name</td>
-								<td>More info?</td>
-							</tr>
-							<tr class="expanded">
-								<td class="request-image"><img src="sample.png" alt="sample dog pic" height="100" weight="100"></td>
-								<td>Dog Name</td>
-								<td>More info?</td>
-							</tr>
-							<tr class="expanded">
-								<td></td>
-								<td class="approve">
-									<button type="button" class="request-buttons btn btn-success btn-lg" />Approve</button>
-								</td>
-								<td class= "deny">
-									<button type="button" class="request-buttons btn btn-warning btn-lg" />Deny</button>
-								</td>
-								<td class= "undo">
-									<button type="button" class="request-buttons btn btn-secondary btn-lg" />Undo</button>
-								</td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="accordion-container">
-						<thead>
-							<tr>
-								<td class="accordion">id here</td>
-								<td class="accordion">dog here</td>
-								<td class="accordion">dater here</td>
-								<td class="accordion">some date</td>
-								<td class="accordion">status here</td>
-								<td class="accordion chevron">
-									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="expanded">
-								<td class="request-image"><img src="sample.png" alt="sample dog pic" height="100" width="100"></td>
-								<td>Dater Name</td>
-								<td>More info?</td>
-							</tr>
-							<tr class="expanded">
-								<td class="request-image"><img src="sample.png" alt="sample dog pic" height="100" width="100"></td>
-								<td>Dog Name</td>
-								<td>More info?</td>
-							</tr>
-							<tr class="expanded">
-								<td></td>
-								<td class="approve">
-									<button type="button" class="request-buttons btn btn-success btn-lg" />Approve</button>
-								</td>
-								<td class= "deny">
-									<button type="button" class="request-buttons btn btn-warning btn-lg" />Deny</button>
-								</td>
-								<td class= "undo">
-									<button type="button" class="request-buttons btn btn-secondary btn-lg" />Undo</button>
-								</td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<br>
-	<!-- Javascript generated table -->
-	<!--<table id="sampleTable">
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>dater</th>
-				<th>dog</th>
-				<th>when</th>
-				<th>status</th>
-				<th>temp buttons</th>
-				<!--<td class="chevron"></td>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>-->
+	<!-- dummy data for local testing purposes -->
 	<script>
-		//var currentRequests = fetchRequests("request.html", updateTable());
 		var dogOne = new DogProfile(1,"bob","M","sample.png");
 		var dogTwo = new DogProfile(2, "lucy", "F", "sample.png");
 		var addressOne = new Address("the sky","is", "not blue", 98105);
@@ -173,11 +58,12 @@
 			requestOne,
 			requestTwo
 		];
-		//updateTable("sampleTable", currentRequests);
 	</script>
+	<!-- For placement of requests -->
 	<div id="accordion">
 		
 	</div>
+	<!-- fills accordion with requests and available actions -->
 	<script type="text/javascript">
 
 		jQuery(function() { 
@@ -205,7 +91,7 @@
 							 "<p>Date requested with: </p>" +
 							 "<p><img class=\"accordion-img\" src=\""+ r.dogProfile.photoURL +"\" alt=\"dog image\">  " + 
 							 "<strong>"+r.dogProfile.name+"</strong> </p> " +
-							 "<p> " + 
+							 "<p class=\"request-button-container\"> " + 
 							 // buttons
 							 "<button id =\"A" + r.id + "\" class=\"request-buttons btn btn-success btn-lg\" onclick=\"aproveRequest(" + r.id + ")\"> Approve</button>" +
 							 "<button id =\"D" + r.id + "\" class=\"request-buttons btn btn-warning btn-lg\" onclick=\"denyRequest(" + r.id + ")\"> Deny</button>" +
@@ -272,7 +158,5 @@
 			break;
 		  }  
 		}
-
-
-</script>
+	</script>
  </body>

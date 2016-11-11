@@ -13,7 +13,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--<script src="js/updatetable.js"></script>-->
 	<script src="js/fbinit.js"></script>
 	<script src="js/fblogin.js"></script>
 	<script src="js/chevron.js"></script>
@@ -36,17 +35,14 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="requests.html">Requests</a></li>
 				<li><a href="history.html">History</a></li>
-				<li><a href="index.html"><!--<span class="glyphicon glyphicon-log-in"></span> -->Logout</a></li>
+				<li><a href="index.html">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 	
-	<!--need script to create tables?-->
-	<!--<script>updateTable("", )</script>-->
-	
 	<h1>History</h1>
+	<!-- dummy data for local testing purposes -->
 	<script>
-		//var currentRequests = fetchRequests("request.html", updateTable());
 		var dogOne = new DogProfile(1,"bob","M","sample.png");
 		var dogTwo = new DogProfile(2, "lucy", "F", "sample.png");
 		var addressOne = new Address("the sky","is", "not blue", 98105);
@@ -62,11 +58,12 @@
 			requestOne,
 			requestTwo
 		];
-		//updateTable("sampleTable", currentRequests);
 	</script>
+	<!-- For placement of request history -->
 	<div id="accordion">
 		
 	</div>
+	<!-- Fills accordion with history display -->
 	<script type="text/javascript">
 
 		jQuery(function() { 
@@ -94,12 +91,6 @@
 							 "<p>Date with: " +
 							 "<img class=\"accordion-img\" src=\""+ r.dogProfile.photoURL +"\" alt=\"dog image\">  " + 
 							 "<strong>"+r.dogProfile.name+"</strong> </p> " +
-							 //"<p> " + 
-							 // buttons
-							 //"<button id =\"A" + r.id + "\" class=\"request-buttons btn btn-success btn-lg\" onclick=\"aproveRequest(" + r.id + ")\"> Approve</button>" +
-							 //"<button id =\"D" + r.id + "\" class=\"request-buttons btn btn-warning btn-lg\" onclick=\"denyRequest(" + r.id + ")\"> Deny</button>" +
-							 //"<button id =\"U" + r.id + "\" class=\"request-buttons btn btn-secondary btn-lg\" onclick=\"undoRequest(" + r.id + ")\"> Undo</button> " + 
-							 //"</p>" +
 							 "</div>";
 				$("#accordion").append(newDiv)
 				  // onclick="displayObject()"> Show Object properties</button>
@@ -112,190 +103,6 @@
 			});
  
 		});
-
-
-
-
-		function aproveRequest(reqId){ 
-		  updateButtons(reqId, "approve");
-		  //shelter.updateStatus(reqId, "A");
-		}
-
-		function denyRequest(reqId){   
-		  updateButtons(reqId, "deny");
-		  //shelter.updateStatus(reqId, "D");
-		}
-
-		function undoRequest(reqId){  
-		 updateButtons(reqId, "undo");
-		 //shelter.updateStatus(reqId, "P");
-		}
-
-		function updateButtons(reqId, clickedButton) {
-		  var buttonID_A = "A" + reqId;
-		  var buttonID_D = "D" + reqId;  
-		  var buttonID_U = "U" + reqId;
-		  //window.alert("Approving request: " + buttonID_A);
-			
-		  var approveButton = document.getElementById(buttonID_A);
-		  var denyButton = document.getElementById(buttonID_D);
-		  var undoButton = document.getElementById(buttonID_U);
-
-		  switch(clickedButton) {
-			case "approve": 
-			  approveButton.disabled = true;
-			  denyButton.disabled = false;
-			  undoButton.diabled = false;
-
-			break;
-			case "deny":
-			  approveButton.disabled = false;
-			  denyButton.disabled = true;
-			  undoButton.diabled = false;
-
-			break;
-			case "undo":
-			  approveButton.disabled = false;
-			  denyButton.disabled = false;
-			  undoButton.diabled = false;
-			break;
-		  }  
-		}
-
-
 	</script>
-	<!-- Bootstrap version -->
-	<!--<table id="accordion" role="tablist" aria-multiselectable="true">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Dater</th>
-				<th>Dog</th>
-				<th>When</th>
-				<th>Status</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-		  <div class="card">
-		    
-			<tr class="card-header" role="tab" id="headingOne">
-				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					id1
-				</td>
-				<!--to allow the rest of the columns to also act as above-->
-				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					dater1
-				</td>
-				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					dog1
-				</td>
-				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					time1
-				</td>
-				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					status1
-				</td>
-				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-					<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
-				</td>
-			</tr>
-
-			<tr id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-			  <td class="card-block">content</td>
-			</tr>
-			
-		  </div>
-		  <div class="card">
-			<tr class="card-header" role="tab" id="headingTwo">
-				<td class="requestId" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					id2
-				</td>
-				<!--to allow the rest of the columns to also act as above-->
-				<!--<td class="collapsed requestDater" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					dater2
-				</td>
-				<td class="collapsed requestDog" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					dog2
-				</td>
-				<td class="collapsed requestWhen" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					time2
-				</td>
-				<td class="collapsed requestStatus" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					status2
-				</td>			</tr>
-			<tr id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-			  <td class="card-block">content2</td>
-			</tr>
-		  </div>
-		  <div class="card">
-			<tr class="card-header" role="tab" id="headingThree">
-				<td class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				  Collapsible Group Item #3
-				</td>
-			</tr>
-			<tr id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-			  <td class="card-block">content3</td>
-			</tr>
-		  </div>
-		</tbody>
-	</table>-->
-	<!-- nested table version
-	<table id="history">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Dog</th>
-				<th>Dater</th>
-				<th>When</th>
-				<th>Status</th>
-				<th class="chevron"></th><!--chevron
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td id="inside" colspan="6">
-					<!-- Example entries go here
-					<table class="accordion-container">
-						<thead>
-							<tr>
-								<td class="accordion">id here</td>
-								<td class="accordion">dog here</td>
-								<td class="accordion">dater here</td>
-								<td class="accordion">some date</td>
-								<td class="accordion">status here</td>
-								<td class="accordion chevron">
-									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>put stuff here</td>
-							</tr>
-						</tbody>
-						</table>
-					<table class="accordion-container">
-						<thead>
-							<tr>
-								<td class="accordion">id here</td>
-								<td class="accordion">dog here</td>
-								<td class="accordion">dater here</td>
-								<td class="accordion">some date</td>
-								<td class="accordion">status here</td>
-								<td class="accordion chevron">
-									<i class="indicator glyphicon glyphicon-chevron-up pull-right" ></i>
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>put stuff here</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>-->
+	
  </body>

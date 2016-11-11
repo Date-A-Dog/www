@@ -25,25 +25,7 @@ body {
 	--table-inner-selected-bg(--even-darker-bg-color);*/
 }
 
-/* main table properties*/
-#requests, #history, #sampleTable {
-	margin: 0 auto;
-	width: 900px;
-	border: 1px solid var(--palest);
-	table-layout: fixed;
-}
-
-/* labels for main table */
-#requests th, #history th, #sampleTable th{
-	padding-left: 1em;
-}
-
-/* Main table properties per element */
-#requests thead, #history thead, #sampleTable thead{
-	background: var(--palest);
-	border-bottom: 1px solid var(--palest);
-}
-
+/* Requests display */
 #accordion {
 	background: var(--table-outer-bg);
 	margin-left: 2em;
@@ -52,7 +34,8 @@ body {
 
 /* request element */
 #accordion h3 {
-	font-size: 1.5em;
+	font-size: 1em;
+	font-weight: bold;
 }
 
 /* expanded request element */
@@ -62,19 +45,23 @@ body {
 	padding: 0.5em;
 }
 
+/* images for expanded request info */
 #accordion .accordion-img {
 	display:inline;
 	height: 6em;
 }
 
 #accordion p{
-	font-size: 1.5em;
+	font-size: 1em;
+	text-align: left;
 }
 
+/* Request bars */
 #accordion .accordionTitle{
 	padding: 1em;
 }
 
+/* text in request bars */
 #accordion .accordionTitle h3{
 	text-align: center;
 	display: inline;
@@ -82,57 +69,10 @@ body {
 }
 
 .request-buttons{
-	margin: 0.1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
 }
 
-/* inner table entries*/
-.accordion-container{
-	width: 100%;
-	background-color: var(--table-inner-bg);
-	color: var(--table-inner-text-color);
-}
-
-#sampleTable tbody tr {
-	background:var(--table-outer-bg);
-	border: 1px solid var(--palest);
-}
-
-/* inner table entries selected?*/
-
-
-/* outer table entires*/
-.accordion-container .accordion{ /*.card-header{*/
-	cursor: pointer;
-	
-	background:var(--table-outer-bg);
-	color: var(--table-outer-text-color);
-	
-}
-
-#requests th, #history th {
-	width: 19%;
-}
-
-/* entries in table, setting width here keeps them from changing when expanded???*/
-#inside td, #inside th{
-	padding: 10px;
-	width: 19%;
-}
-
-#requests .chevron, #history .chevron{
-	width: 5%;
-}
-
-/* Placement inside table elements for request buttons, images */
-.deny {
-	text-align: center;
-}
-.approve {
-	text-align: right;
-}
-.approve, .deny, .undo{
-	
-}
-.request-image{
+#accordion .request-button-container{
 	text-align: center;
 }
