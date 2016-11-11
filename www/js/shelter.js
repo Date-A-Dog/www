@@ -1,7 +1,7 @@
 
 /******* Comment out when not testing ***********************/
-var fs = require("fs");
-var filterDateRequestProperties = require("./fetchrequests");
+//var fs = require("fs");
+//var filterDateRequestProperties = require("./fetchrequests");
 /************************************************************/
 
 /**
