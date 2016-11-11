@@ -20,7 +20,7 @@
 			}
 		},
 		"dateTime": "tomorrow",
-		"status": "P"
+		"status": "A"
 	},
 	{
 		"id": 187327,
@@ -66,6 +66,6 @@
 			}
 		},
 		"dateTime": "tomorrow",
-		"status": "A"
+		"status": "D"
 	}
 ]

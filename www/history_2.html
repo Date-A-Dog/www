@@ -22,6 +22,9 @@
 </div>
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
 
 <script src="./fetchrequests.js"></script>
 <script src="./updatetable.js"></script>
@@ -30,11 +33,6 @@
 <script src="./daterequest.js"></script>
 <script src="./daterprofile.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-
-
-<link rel="stylesheet" href="/resources/demos/style.css">
 
 <script type="text/javascript">
 
@@ -48,20 +46,28 @@ var siteUrl = '/';
  // only load data when refresh is done fetching
 var shelter = Shelter("WA141");
 shelter.updateDateRequests(function(){ 
+
    var requestsList = shelter.getHistoryRequests();
 
    for (var i = 0; i < requestsList.length; i++) {
      var r = requestsList[i];
-     var newDiv = "<h3> " + r.daterProfile.fName +"  </h3> " + 
+ 
+     var newDiv = "<h3> Dater: " + r.daterProfile.fName +" " + r.daterProfile.lName + "  Dog Name: " + r.dogProfile.name + "  </h3> " + 
                 "<div> " + 
-                 "<p> id: " +  r.id+ " </p> </br>" + 
-                 "<p> status: " + r.status+  " </p></br>" + 
+                 "<p> Requester Name: "  + r.daterProfile.fName +" " + r.daterProfile.lName + " </p>" + 
+                 "<p> status: " + r.status+  " </p>" + 
                  "<p> dogname: " + r.dogProfile.name+" </p></br> " + 
+                 "<p> " + 
+                 // buttons
+                 "<button id =\"A" + r.id + "\"onclick=\"aproveRequest(" + r.id + ")\"> Approve</button>" +
+                 "<button id =\"D" + r.id + "\"onclick=\"denyRequest(" + r.id + ")\"> Deny</button>" +
+                 "<button id =\"U" + r.id + "\"onclick=\"undoRequest(" + r.id + ")\"> Undo</button> " + 
+                 "</p></br>" +
                  "</div>";
       $("#accordion").append(newDiv)
-      $("#accordion").accordion("refresh");
+      // onclick="displayObject()"> Show Object properties</button>
     }
-
+    $("#accordion").accordion("refresh");
     $("#accordion").accordion();
 
     jQuery( document ).ready(function() {
@@ -71,6 +77,53 @@ shelter.updateDateRequests(function(){
 });
 
 
+
+
+function aproveRequest(reqId){ 
+  updateButtons(reqId, "approve");
+  shelter.updateStatus(reqId, "A");
+}
+
+function denyRequest(reqId){   
+  updateButtons(reqId, "deny");
+  shelter.updateStatus(reqId, "D");
+}
+
+function undoRequest(reqId){  
+ updateButtons(reqId, "undo");
+ shelter.updateStatus(reqId, "P");
+}
+
+function updateButtons(reqId, clickedButton) {
+  var buttonID_A = "A" + reqId;
+  var buttonID_D = "D" + reqId;  
+  var buttonID_U = "U" + reqId;
+  //window.alert("Approving request: " + buttonID_A);
+    
+  var approveButton = document.getElementById(buttonID_A);
+  var denyButton = document.getElementById(buttonID_D);
+  var undoButton = document.getElementById(buttonID_U);
+
+  switch(clickedButton) {
+    case "approve": 
+      approveButton.disabled = true;
+      denyButton.disabled = false;
+      undoButton.diabled = false;
+
+    break;
+    case "deny":
+      approveButton.disabled = false;
+      denyButton.disabled = true;
+      undoButton.diabled = false;
+
+    break;
+    case "undo":
+      approveButton.disabled = false;
+      denyButton.disabled = false;
+      undoButton.diabled = false;
+    break;
+  }  
+}
 
 
 </script>

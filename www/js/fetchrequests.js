@@ -1,8 +1,8 @@
 
 /*******comment out when not testing ********/
-var DaterProfile = require("./daterprofile");
-var DogProfile = require("./dogprofile");
-var DateRequest = require("./daterequest");
+//var DaterProfile = require("./daterprofile");
+//var DogProfile = require("./dogprofile");
+//var DateRequest = require("./daterequest");
 /*******************************************/
 
 // **Function temporarily inplace until we ca pull data from our data base.**
