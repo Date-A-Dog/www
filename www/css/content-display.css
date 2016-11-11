@@ -26,7 +26,7 @@ body {
 }
 
 /* main table properties*/
-#requests, #history {
+#requests, #history, #sampleTable {
 	margin: 0 auto;
 	width: 900px;
 	border: 1px solid var(--palest);
@@ -34,14 +34,55 @@ body {
 }
 
 /* labels for main table */
-#requests th, #history th{
+#requests th, #history th, #sampleTable th{
 	padding-left: 1em;
 }
 
 /* Main table properties per element */
-#requests thead, #history thead{
+#requests thead, #history thead, #sampleTable thead{
 	background: var(--palest);
 	border-bottom: 1px solid var(--palest);
+}
+
+#accordion {
+	background: var(--table-outer-bg);
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+/* request element */
+#accordion h3 {
+	font-size: 1.5em;
+}
+
+/* expanded request element */
+#accordion .accordionEle {
+	background: var(--table-inner-bg);
+	height: auto !important;
+	padding: 0.5em;
+}
+
+#accordion .accordion-img {
+	display:inline;
+	height: 6em;
+}
+
+#accordion p{
+	font-size: 1.5em;
+}
+
+#accordion .accordionTitle{
+	padding: 1em;
+}
+
+#accordion .accordionTitle h3{
+	text-align: center;
+	display: inline;
+	margin-right: 2em;
+}
+
+.request-buttons{
+	margin: 0.1em;
 }
 
 /* inner table entries*/
@@ -49,6 +90,11 @@ body {
 	width: 100%;
 	background-color: var(--table-inner-bg);
 	color: var(--table-inner-text-color);
+}
+
+#sampleTable tbody tr {
+	background:var(--table-outer-bg);
+	border: 1px solid var(--palest);
 }
 
 /* inner table entries selected?*/
