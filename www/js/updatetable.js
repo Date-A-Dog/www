@@ -58,6 +58,9 @@ updateTable = function(tableId, dateRequests) {
 	approve.innerHTML = "Approve";
 	decline.innerHTML = "Decline";
 	undo.innerHTML = "Undo";
+	approve.setAttribute("onclick", "updateRequest(this)");
+	decline.setAttribute("onclick", "updateRequest(this)");
+	undo.setAttribute("onclick", "updateRequest(this)");
 	buttoncell.appendChild(approve);
 	buttoncell.appendChild(decline);
 	buttoncell.appendChild(undo);
