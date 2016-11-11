@@ -47,11 +47,12 @@ var Shelter = function(_id, _testingMockData) {
       dateRequests = filterDateRequestProperties(jsonContent);
     } else {
              // call async method to load dateRequext data
-      fetchRequests('./mockData/dateRequestData.json', function(data) {
+      //fetchRequests('js/mockData/dateRequestData.json', function(data) {
         //return data here
-        dateRequests = data;
+		
+        dateRequests = currentRequests;//data;
         callback();
-      });
+      //});
     }
   };
 

@@ -44,6 +44,41 @@ body {
 	border-bottom: 1px solid var(--palest);
 }
 
+#accordion {
+	background: var(--table-outer-bg);
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+/* request element */
+#accordion h3 {
+	
+}
+
+/* expanded request element */
+#accordion .accordionEle {
+	background: var(--table-inner-bg);
+	height: auto !important;
+}
+
+#accordion p{
+	font-size: 1.5em;
+}
+
+#accordion .accordionTitle{
+	padding: 1em;
+}
+
+#accordion .accordionTitle h3{
+	text-align: center;
+	display: inline;
+	margin-right: 2em;
+}
+
+.request-buttons{
+	margin: 0.1em;
+}
+
 /* inner table entries*/
 .accordion-container{
 	width: 100%;

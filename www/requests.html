@@ -11,6 +11,7 @@
 	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="js/fbinit.js"></script>
 	<script src="js/fblogin.js"></script>
@@ -20,7 +21,8 @@
 	<script src="js/dogprofile.js"></script>
 	<script src="js/daterprofile.js"></script>
 	<script src="js/daterequest.js"></script>
-	<script src="js/fetchrequests.js"></script>
+	<!--<script src="js/fetchrequests.js"></script>-->
+	<script src="js/shelter.js"></script>
 	<script src="js/updatetable.js"></script>
  </head>
 <body id="dad">
@@ -39,6 +41,7 @@
 	</nav>
 
 	<h1>Requests</h1>
+	<!--
 	<table id="requests">
 		<thead>
 			<tr>
@@ -47,13 +50,13 @@
 				<th>Dater</th>
 				<th>When</th>
 				<th>Status</th>
-				<th class="chevron"></th><!--chevron-->
+				<th class="chevron"></th><!--chevron
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td id="inside" colspan="6">
-					<!-- Example entries go here -->
+					<!-- Example entries go here 
 					<table class="accordion-container">
 						<thead>
 							<tr>
@@ -138,7 +141,7 @@
 	</table>
 	<br>
 	<!-- Javascript generated table -->
-	<table id="sampleTable">
+	<!--<table id="sampleTable">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -147,12 +150,12 @@
 				<th>when</th>
 				<th>status</th>
 				<th>temp buttons</th>
-				<!--<td class="chevron"></td>-->
+				<!--<td class="chevron"></td>
 			</tr>
 		</thead>
 		<tbody>
 		</tbody>
-	</table>
+	</table>-->
 	<script>
 		//var currentRequests = fetchRequests("request.html", updateTable());
 		var dogOne = new DogProfile(1,"bob","M","sample.png");
@@ -170,7 +173,100 @@
 			requestOne,
 			requestTwo
 		];
-		updateTable("sampleTable", currentRequests);
+		//updateTable("sampleTable", currentRequests);
 	</script>
-	
+	<div id="accordion">
+		
+	</div>
+	<script type="text/javascript">
+
+		jQuery(function() { 
+			jQuery( "#accordion" ).accordion();
+		});
+		var siteUrl = '/'; 
+
+		//ExecuteOrDelayUntilScriptLoaded(retrieveListItems, "sp.js")
+		// only load data when refresh is done fetching
+		var shelter = Shelter("WA141");
+		shelter.updateDateRequests(function(){ 
+
+			var requestsList = currentRequests;// shelter.getHistoryRequests();
+
+			for (var i = 0; i < requestsList.length; i++) {
+				var r = requestsList[i];
+			 
+				var newDiv = "<div class=\"accordionTitle\"><h3> Dog Name: " + r.dogProfile.name + "</h3><h3>Dater: " + r.daterProfile.fName +" " + r.daterProfile.lName + "</h3></div> " + 
+							"<div class=\"accordionEle\"> " + 
+							 "<p> Requester Name: "  + r.daterProfile.fName +" " + r.daterProfile.lName + " </p>" +  
+							 "<p> dogname: " + r.dogProfile.name+" </p> " + 
+							 "<p> " + 
+							 // buttons
+							 "<button id =\"A" + r.id + "\" class=\"request-buttons btn btn-success btn-lg\" onclick=\"aproveRequest(" + r.id + ")\"> Approve</button>" +
+							 "<button id =\"D" + r.id + "\" class=\"request-buttons btn btn-warning btn-lg\" onclick=\"denyRequest(" + r.id + ")\"> Deny</button>" +
+							 "<button id =\"U" + r.id + "\" class=\"request-buttons btn btn-secondary btn-lg\" onclick=\"undoRequest(" + r.id + ")\"> Undo</button> " + 
+							 "</p>" +
+							 "</div>";
+				$("#accordion").append(newDiv)
+				  // onclick="displayObject()"> Show Object properties</button>
+			}
+			$("#accordion").accordion("refresh");
+			$("#accordion").accordion();
+
+			jQuery( document ).ready(function() {
+				//alert( "document loaded" );
+			});
+ 
+		});
+
+
+
+
+		function aproveRequest(reqId){ 
+		  updateButtons(reqId, "approve");
+		  //shelter.updateStatus(reqId, "A");
+		}
+
+		function denyRequest(reqId){   
+		  updateButtons(reqId, "deny");
+		  //shelter.updateStatus(reqId, "D");
+		}
+
+		function undoRequest(reqId){  
+		 updateButtons(reqId, "undo");
+		 //shelter.updateStatus(reqId, "P");
+		}
+
+		function updateButtons(reqId, clickedButton) {
+		  var buttonID_A = "A" + reqId;
+		  var buttonID_D = "D" + reqId;  
+		  var buttonID_U = "U" + reqId;
+		  //window.alert("Approving request: " + buttonID_A);
+			
+		  var approveButton = document.getElementById(buttonID_A);
+		  var denyButton = document.getElementById(buttonID_D);
+		  var undoButton = document.getElementById(buttonID_U);
+
+		  switch(clickedButton) {
+			case "approve": 
+			  approveButton.disabled = true;
+			  denyButton.disabled = false;
+			  undoButton.diabled = false;
+
+			break;
+			case "deny":
+			  approveButton.disabled = false;
+			  denyButton.disabled = true;
+			  undoButton.diabled = false;
+
+			break;
+			case "undo":
+			  approveButton.disabled = false;
+			  denyButton.disabled = false;
+			  undoButton.diabled = false;
+			break;
+		  }  
+		}
+
+
+</script>
  </body>
