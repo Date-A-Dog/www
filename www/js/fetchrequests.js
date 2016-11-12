@@ -11,22 +11,43 @@
 // This is an asyinc function and takes a callback function
 // as the second parameter
 //
-// function fetchRequests(path, callback) {
-//   var httpRequest = new XMLHttpRequest();
-//   httpRequest.onreadystatechange = function() {
-//   	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-//   	  var data = JSON.parse(httpRequest.responseText);
-//   		if (callback) {
-//         // pass filtered array to callback
-//         callback(filterDateRequestProperties(data));
-//       }
-//   	}
-//  };
+ function fetchRequests(path, callback) {
+   var httpRequest = new XMLHttpRequest();
+   httpRequest.onreadystatechange = function() {
+   	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+   	  var data = JSON.parse(httpRequest.responseText);
+   		if (callback) {
+         // pass filtered array to callback
+         callback(filterDateRequestProperties(data));
+       }
+   	}
+  };
 
-//  httpRequest.open('GET', path);
-//  httpRequest.send();
-// };
+  httpRequest.open('GET', path);
+  httpRequest.send();
+ };
 
+
+/**** GOOD FUNCTION - use this once database calls are ready ****
+function fetchRequests(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+      var data = JSON.parse(httpRequest.responseText);
+      if (callback) {
+        // pass filtered array to callback
+        console.log(data);
+        callback(filterDateRequestProperties(data));
+      }
+    }
+  };
+
+  httpRequest.open('POST', '/api/getHugosRequest');
+  httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  httpRequest.setRequestHeader("access_token", "EAAPtY6fMq6ABAIqQxGjcfUTpkqp8KBUm3DZBjrOZBfhUoAE1QAM4RyZCZAf5s5L0Hh6sZAAyIywRg3TrJsNEGWfFks2UlYYuhYXbnbIePPtUZCW1ZClZChYouwMZBAHmD9djQRvPgTITI6Hr1tFJHcbyghL2Vm7gVGgmrmx9G69caUwZDZD");
+  httpRequest.send(JSON.stringify({shelter_id: "WA214"}));
+};
+********/
 
 
 // Iterates the given array of dateRequests extracts properties
@@ -63,34 +84,6 @@
 // return:
 //   An unordered array containing date requests with limited properties
 //
-var jq = document.createElement("script");
-jq.type = "text/javascript";
-jq.src = "https://code.jquery.com/jquery-3.1.1.min.js";
-document.getElementsByTagName("head")[0].appendChild(jq);
-// jQuery MAY OR MAY NOT be loaded at this stage
-var waitForLoad = function () {
-    if (typeof jQuery != "undefined") {
-      $.ajax({
-        type: "POST",
-        url: 'api/getHugosRequest',
-        headers: { 'accept_token': 'some value' },
-        data: {'shelter_id' : 'WA214'},
-        dataType: 'json'
-      })
-      .done(function (responseData, status, xhr) {
-       // preconfigured logic for success
-         alert(responseData);
-       })
-      .fail(function (xhr, status, err) {
-       //predetermined logic for unsuccessful request
-         alert(error);
-      });
-    } else {
-        window.setTimeout(waitForLoad, 1000);
-    }
-};
-window.setTimeout(waitForLoad, 1000);
-
 function filterDateRequestProperties(data) {
   var filteredArray = [];
 

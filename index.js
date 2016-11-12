@@ -11,8 +11,12 @@ app.get(index, function(req, res) {
 	res.sendFile(__dirname + '/www/index.html');
 });
 
-app.get('/history_2.html', function(req, res) {
-	res.sendFile(__dirname + '/www/history_2.html');
+app.get('/history.html', function(req, res) {
+	res.sendFile(__dirname + '/www/history.html');
+});
+
+app.get('/requests.html', function(req, res) {
+	res.sendFile(__dirname + '/www/requests.html');
 });
 
 app.get('/logout.html', function(req, res) {

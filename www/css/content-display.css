@@ -59,6 +59,7 @@ body {
 /* Request bars */
 #accordion .accordionTitle{
 	padding: 1em;
+	border-bottom: 1px solid var(--nav-text-color);
 }
 
 /* text in request bars */
