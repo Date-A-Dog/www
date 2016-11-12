@@ -41,24 +41,7 @@
 	</nav>
 	
 	<h1>History</h1>
-	<!-- dummy data for local testing purposes -->
-	<script>
-		var dogOne = new DogProfile(1,"bob","M","sample.png");
-		var dogTwo = new DogProfile(2, "lucy", "F", "sample.png");
-		var addressOne = new Address("the sky","is", "not blue", 98105);
-		var addressTwo = new Address("street", "city","state",98105);
-		var daterOne = new DaterProfile("Mint","Mocha","peppermintforever@nothing.com","206-555-5555",addressOne);
-		var daterTwo = new DaterProfile("Namae wa", "nemo desu", "trickedbyOd@nothing.com", "405-555-5555", addressTwo);
-		var timeOne = new Date(1478829999999);
-		var timeTwo = new Date(1478825000000);
-		var status = "limbo";
-		var requestOne = new DateRequest(1,dogOne, daterOne, timeOne, status);
-		var requestTwo = new DateRequest(10, dogTwo, daterTwo, timeTwo, status);
-		var currentRequests = [
-			requestOne,
-			requestTwo
-		];
-	</script>
+
 	<!-- For placement of request history -->
 	<div id="accordion">
 		
@@ -76,7 +59,7 @@
 		var shelter = Shelter("WA141");
 		shelter.updateDateRequests(function(){ 
 
-			var requestsList = currentRequests;// shelter.getHistoryRequests();
+			var requestsList = shelter.getHistoryRequests();
 
 			for (var i = 0; i < requestsList.length; i++) {
 				var r = requestsList[i];
